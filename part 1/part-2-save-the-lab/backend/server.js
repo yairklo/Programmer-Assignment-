@@ -38,7 +38,6 @@ app.get("/api/results/:wallet", (req, res) => {
   const wallet = req.params.wallet.toLowerCase();
 
   const matchingResults = results.filter((result) => {
-    result.wallet = wallet;
     return result.wallet.toLowerCase() === wallet;
   });
 
