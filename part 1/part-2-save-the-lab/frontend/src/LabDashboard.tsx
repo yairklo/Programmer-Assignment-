@@ -38,31 +38,35 @@ export function LabDashboard() {
     event.preventDefault();
 
     setStatus("saving");
+    try {
+      const contract = await getWriteLabContract();
 
-    const contract = await getWriteLabContract();
+      await submitResultOnChain(
+        contract,
+        selectedExperimentId,
+        `ipfs://lab-result/${selectedExperimentId}`,
+      );
 
-    await submitResultOnChain(
-      contract,
-      selectedExperimentId,
-      `ipfs://lab-result/${selectedExperimentId}`,
-    );
+      const payloadHash = await hashResultPayload({
+        wallet: DEMO_WALLET,
+        experimentId: Number(selectedExperimentId),
+        note,
+      });
 
-    const payloadHash = await hashResultPayload({
-      wallet: DEMO_WALLET,
-      experimentId: Number(selectedExperimentId),
-      note,
-    });
+        await saveResult({
+        wallet: DEMO_WALLET,
+        experimentId: Number(selectedExperimentId),
+        txHash: "pending",
+        note,
+        payloadHash,
+      });
 
-    saveResult({
-      wallet: DEMO_WALLET,
-      experimentId: Number(selectedExperimentId),
-      txHash: "pending",
-      note,
-      payloadHash,
-    });
-
-    setNote("");
-    setStatus("saved");
+      setNote("");
+      setStatus("saved");
+    }catch(error){
+      console.error(error);
+      setStatus("failed to save");
+    }
   }
 
   return (
