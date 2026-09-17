@@ -40,6 +40,7 @@ contract LabRegistry {
     }
 
     function submitResult(uint256 experimentId, string memory metadataUri) external {
+        require(_experimentExists(experimentId), "Experiment doesn't exist");
         results.push(
             Result({
                 researcher: msg.sender,
@@ -50,5 +51,14 @@ contract LabRegistry {
         );
 
         emit ResultSubmitted(msg.sender, experimentId, metadataUri, block.timestamp);
+    }
+
+    function _experimentExists(uint256 experimentId) private view returns (bool){
+        for (uint256 i = 0; i < experiments.length; i++) {
+            if (experiments[i].id == experimentId && experiments[i].active) {
+                return true;
+            }
+        }
+        return false;
     }
 }
