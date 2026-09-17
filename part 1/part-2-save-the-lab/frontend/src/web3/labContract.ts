@@ -27,14 +27,14 @@ function getEthereum():Eip1193Provider {
 }
 
 export async function getReadLabContract(): Promise<Contract> {
-  const provider = new BrowserProvider(ethereum);
-  return new Contract(LAB_REGISTRY_ADDRESS, LAB_REGISTRY_ABI, provider.signer);
+  const provider = new BrowserProvider(getEthereum());
+  return new Contract(LAB_REGISTRY_ADDRESS, LAB_REGISTRY_ABI, provider);
 }
 
 export async function getWriteLabContract(): Promise<Contract> {
-  const provider = new BrowserProvider(ethereum);
+  const provider = new BrowserProvider(getEthereum());
   const signer = await provider.getSigner();
-  return new Contract(LAB_REGISTRY_ADDRESS, LAB_REGISTRY_ABI, provider.signer);
+  return new Contract(LAB_REGISTRY_ADDRESS, LAB_REGISTRY_ABI, signer);
 }
 
 export async function loadExperiments(contract: Contract): Promise<Experiment[]> {

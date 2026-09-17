@@ -2,7 +2,8 @@ import { FormEvent, useEffect, useState } from "react";
 import { loadResults, saveResult, type BackendResult } from "./api";
 import { hashResultPayload } from "./crypto";
 import {
-  getLabContract,
+  getReadLabContract,
+  getWriteLabContract,
   loadExperiments,
   submitResultOnChain,
   type Experiment,
@@ -21,7 +22,7 @@ export function LabDashboard() {
     async function load() {
       setStatus("loading");
 
-      const contract = await getLabContract();
+      const contract = await getReadLabContract();
       const chainExperiments = await loadExperiments(contract);
       const backendResults = await loadResults(DEMO_WALLET);
 
@@ -38,7 +39,7 @@ export function LabDashboard() {
 
     setStatus("saving");
 
-    const contract = await getLabContract();
+    const contract = await getWriteLabContract();
 
     await submitResultOnChain(
       contract,
