@@ -31,7 +31,7 @@ export function LabDashboard() {
     }
 
     load();
-  }, [experiments]);
+  }, []);
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();

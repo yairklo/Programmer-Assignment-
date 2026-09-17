@@ -31,11 +31,11 @@ contract LabRegistry {
         experiments.push(Experiment(2, "On-chain consent prototype", msg.sender, true));
     }
 
-    function getAllExperiments() public returns (Experiment[] memory) {
+    function getAllExperiments() public view returns (Experiment[] memory) {
         return experiments;
     }
 
-    function getResultCount() external returns (uint256) {
+    function getResultCount() external view returns (uint256) {
         return results.length;
     }
 
