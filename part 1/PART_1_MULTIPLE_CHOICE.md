@@ -26,6 +26,8 @@ C. `async` functions cannot accept typed parameters.
 
 D. The note must be saved to localStorage before calling the API.
 
+**Answer: A**
+
 ## Question 2: Broken Code, Explain The Bug
 
 Loading experiments asks the wallet to approve a transaction.
@@ -51,6 +53,8 @@ B. The function is read-only but is not marked `view`, and the frontend treats t
 C. `tx.wait()` is required for every contract call.
 
 D. The contract must emit an event before returning data.
+
+**Answer: B**
 
 ## Question 3: Broken Code, Choose The Best Fix
 
@@ -105,6 +109,8 @@ D.
 res.setHeader("Access-Control-Allow-Origin", "*");
 res.json(results);
 ```
+
+**Answer: B**
 
 ## Question 4: Broken Code, Choose The Best Fix
 
@@ -169,3 +175,4 @@ function markCompleted(id: string) {
   }, 0);
 }
 ```
+**Answer: B**
