@@ -11,6 +11,9 @@ export function ChatApp() {
     const [selectedConversationId, setSelectedConversationId] = useState(mockConversations[0].id);
 
     const selectedConversation = conversations.find((conversation) => conversation.id === selectedConversationId);
+    if (!selectedConversation) {
+        return null;
+    }
 
     const sortedConversations = [...conversations].sort((a, b) => {
         const aLast = a.messages.at(-1)?.timestamp ?? 0;
