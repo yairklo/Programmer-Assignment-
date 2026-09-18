@@ -13,26 +13,47 @@ Abusing AI to do all/most the work for you might get you disqualified, we scan y
 Answer one:
 
 - Yes
-- No
 
 ## Tools Used
 
 List any AI tools or assistants you used.
 
+claude
+
 ## Where AI Helped
 
-List the files, functions, or explanations where AI contributed.
-
-- `part-2-save-the-lab/frontend/src/web3/encodedAbi.ts`: AI (Claude Code) explained how the base64-encoded ABI maps back to the Solidity source in `LabRegistry.sol` (e.g. the `Experiment` struct becoming `tuple(uint256 id,string title,address owner,bool active)`, and why `memory`/`calldata` are dropped), so I could work out and encode the corrected ABI string myself after adding `view` in Solidity.
+A general explanation of blockchain and `.sol` files. Encoding the new function signatures. Guidance on using the `Eip1193Provider` type.
+Wrote frontend/chat.html and frontend/src/chat/main.tsx from scratch, restored
+frontend/index.html after it was accidentally overwritten, and directly fixed
+import paths in ChatApp.tsx and prop-type bugs in MessageBubble.tsx and
+MessageList.tsx that were blocking compilation.
+All CSS was written by AI.
 
 ## Prompts Or Questions Asked
 
-Paste or summarize the main prompts/questions you asked.
+Asked Claude to explain: what an ABI is and why encodedAbi.ts drifted from
+LabRegistry.sol, Solidity `view`/state mutability, the EIP-1193 provider
+type, why loadExperiments used tx.wait() incorrectly, general blockchain/
+consensus concepts, and TypeScript typing questions (useState generics,
+Array.find() returning T | undefined, component prop types). Also asked
+for help debugging specific TypeScript compiler errors as they came up,
+and for guidance on structuring the Part 3 chat UI (state shape, file
+layout, immutable state updates) without Claude implementing it directly.
 
 ## What You Personally Verified
 
-Explain what you checked yourself before submitting.
+Before applying any suggestion, I made sure I understood Claude's
+explanation and agreed with the reasoning behind each fix, rather than
+copying changes blindly. I ran the project locally myself and tested
+each fix in practice. For the CSS Claude wrote, I visually checked that
+it rendered correctly in the browser.
+
+One thing I did not independently verify: the correctness of the base64
+ABI encoding Claude generated for me — I used it as given without
+decoding it myself to double-check it matched the intended signatures.
 
 ## Anything AI Suggested That You Rejected
 
-Mention one suggestion you did not use, or write "None."
+Claude suggested removing the base64 encoding in encodedAbi.ts entirely
+in favor of a plain readable array. I kept the base64 approach and only
+fixed its contents.
