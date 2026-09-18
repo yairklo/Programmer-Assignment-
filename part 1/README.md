@@ -24,3 +24,13 @@ Submit:
 - Completed `AI_USAGE.md`
 
 Prefer clear, minimal fixes over a full rewrite.
+
+## Part 3: Chat UI
+
+Located in `part-2-save-the-lab/frontend/src/chat`. To view it, run:
+
+    cd part-2-save-the-lab
+    npm run frontend
+
+Then open `http://127.0.0.1:5173/chat.html` in your browser
+(the Lab Dashboard from Part 2 remains at `index.html`).
