@@ -1,10 +1,10 @@
-import {useEffect, useState } from "react";
-import { mockConversations } from "./mockData";
-import type { Conversation, Message } from "./types";
-import { ConversationList } from "./components/ConversationList";
-import { ConversationHeader } from "./components/ConversationHeader";
-import { MessageList } from "./components/MessageList";
-import { MessageComposer } from "./components/MessageComposer";
+import { useState } from "react";
+import { mockConversations } from "../mockData";
+import type { Message } from "../types";
+import { ConversationList } from "./ConversationList";
+import { ConversationHeader } from "./ConversationHeader";
+import { MessageList } from "./MessageList";
+import { MessageComposer } from "./MessageComposer";
 
 export function ChatApp() {
     const [conversations, setConversations] = useState(mockConversations);

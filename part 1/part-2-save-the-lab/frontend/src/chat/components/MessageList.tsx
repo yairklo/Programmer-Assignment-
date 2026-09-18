@@ -1,7 +1,7 @@
 import type { Message } from "../types";
 import { MessageBubble } from "./MessageBubble";
 
-export function MessageList({ messages }: Message[]) {
+export function MessageList({ messages }: { messages: Message[] }) {
   if (messages.length === 0) {
     return (
       <div className="message-list message-list--empty">

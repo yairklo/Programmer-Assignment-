@@ -1,6 +1,6 @@
 import type { Message } from "../types";
 
-export function MessageBubble({ message }: Message) {
+export function MessageBubble({ message }: { message: Message }) {
   return (
     <div
       className={
