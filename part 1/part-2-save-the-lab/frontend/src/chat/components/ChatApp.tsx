@@ -30,6 +30,14 @@ export function ChatApp() {
             timestamp: Date.now(),
         };
         const willFail = Math.random() < 0.2;
+        
+        setConversations((prev) =>
+            prev.map((conversation) =>
+                conversation.id === selectedConversationId
+                ? { ...conversation, messages: [...conversation.messages, newMessage] }
+                : conversation
+            )
+        );
 
         setTimeout(() => {
             setConversations((prev) =>
